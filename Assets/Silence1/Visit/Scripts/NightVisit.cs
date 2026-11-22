@@ -46,7 +46,6 @@ namespace Silence1
         public VisitSlot[] slots;
         public Font regular, bold;
         public int startSlot, firstVisitSlot;
-        public string openWindowScene = "Silence1Demo";
 
         static readonly Color Paper = new Color32(252, 251, 247, 255), Ink = new Color32(20, 18, 20, 255);
         const string Wordmark = "SILENCE<color=#df4a2b>1</color>";
@@ -70,15 +69,15 @@ namespace Silence1
         float playFrom;
         float soloExterior = 1, soloInside = 1;   // measurement solo only (-visitMeasure); always 1 in the experience
 
-        RectTransform canvasRect, photoRect, band, intro, compare, dialGroup, actions, captionRect, menuRect, sceneRect, placeRow;
+        RectTransform canvasRect, photoRect, band, intro, compare, dialGroup, actions, captionRect, sceneRect, placeRow;
         Text sceneText, placeCaption, timeText;
         Button timeButton;
         Button[] placeButtons;
         Text[] placeTexts;
         Image background, bandImage;
         RawImage photo, overlay;
-        Text question, caption, clock, note, disclaimer, conventionalText, silenceText, replayText, muteText, captionText, menuText, visitText;
-        Button visitButton, conventionalButton, silenceButton, replayButton, muteButton, captionButton, menuButton;
+        Text question, caption, clock, note, disclaimer, conventionalText, silenceText, replayText, muteText, captionText, visitText;
+        Button visitButton, conventionalButton, silenceButton, replayButton, muteButton, captionButton;
         Button[] dialButtons;
         Text[] dialTexts;
         TimeDial dial;
@@ -105,8 +104,7 @@ namespace Silence1
             EventSystem.current.SetSelectedGameObject(visitButton.gameObject);
             var args = Environment.GetCommandLineArgs();
             int i = Array.IndexOf(args, "-visitTest"), m = Array.IndexOf(args, "-visitMeasure"), r = Array.IndexOf(args, "-visitShowcase");
-            if (VisitEntry.TestDir != null) StartCoroutine(ReEntered(VisitEntry.TestDir));
-            else if (i >= 0 && i + 1 < args.Length) StartCoroutine(SelfTest(args[i + 1]));
+            if (i >= 0 && i + 1 < args.Length) StartCoroutine(SelfTest(args[i + 1]));
             else if (m >= 0 && m + 1 < args.Length) StartCoroutine(Measure(args[m + 1]));
             else if (r >= 0 && r + 1 < args.Length) StartCoroutine(Showcase(args[r + 1]));
         }
@@ -262,12 +260,6 @@ namespace Silence1
             Refresh();
         }
 
-        public void Back()
-        {
-            AudioListener.volume = 1;
-            if (Application.CanStreamedLevelBeLoaded(openWindowScene)) SceneManager.LoadScene(openWindowScene);
-        }
-
         int Nearest(float hour)
         {
             int best = 0;
@@ -397,7 +389,6 @@ namespace Silence1
         {
             var k = Keyboard.current;
             if (k == null) return;
-            if (k.escapeKey.wasPressedThisFrame) Back();
             if (k.tabKey.wasPressedThisFrame) Tab(k.shiftKey.isPressed ? -1 : 1);
             if (!visited) return;
             if (k.rKey.wasPressedThisFrame && dialShown) Replay();
@@ -428,7 +419,6 @@ namespace Silence1
             dialGroup.gameObject.SetActive(dialShown);
             actions.gameObject.SetActive(dialShown);
             placeRow.gameObject.SetActive(dialShown);
-            menuRect.gameObject.SetActive(visited);
             sceneRect.gameObject.SetActive(visited && !string.IsNullOrEmpty(sceneText.text));
             note.enabled = compareShown && !noteShown;
             Color text = portrait ? Ink : Paper, glyphOnFill = portrait ? Paper : Ink;
@@ -543,14 +533,6 @@ namespace Silence1
             ((RectTransform)muteButton.transform).anchoredPosition = new Vector2(-95, -34);
             ((RectTransform)captionButton.transform).anchoredPosition = new Vector2(95, -34);
 
-            menuRect = Node("Menu", canvasRect);
-            menuRect.anchorMin = menuRect.anchorMax = menuRect.pivot = new Vector2(0, 1);
-            menuButton = MakeButton(menuRect, "← 열린 창 체험", new Vector2(250, 52), 22, Back, out menuText, false);
-            var mr = (RectTransform)menuButton.transform;
-            mr.anchorMin = mr.anchorMax = mr.pivot = new Vector2(0, 1);
-            mr.anchoredPosition = Vector2.zero;
-            menuRect.anchoredPosition = new Vector2(24, -24);
-
             sceneRect = Node("Scene name", canvasRect);
             sceneRect.anchorMin = sceneRect.anchorMax = sceneRect.pivot = new Vector2(1, 1);
             sceneRect.anchoredPosition = new Vector2(-24, -24);
@@ -568,7 +550,7 @@ namespace Silence1
             tabOrder.AddRange(dialButtons);
             tabOrder.Add(timeButton);
             tabOrder.AddRange(placeButtons);
-            tabOrder.AddRange(new Selectable[] { replayButton, muteButton, captionButton, menuButton });
+            tabOrder.AddRange(new Selectable[] { replayButton, muteButton, captionButton });
         }
 
         void BuildDial()
@@ -690,7 +672,7 @@ namespace Silence1
             band.anchoredPosition = Vector2.zero;
             if (!portrait)
             {
-                // Top centre, between the menu button and the scene name.
+                // Top centre, left of the scene name.
                 placeRow.SetParent(canvasRect, false);
                 placeRow.anchorMin = placeRow.anchorMax = placeRow.pivot = new Vector2(.5f, 1);
                 placeRow.anchoredPosition = new Vector2(0, -24);
@@ -706,7 +688,7 @@ namespace Silence1
             }
             Color text = portrait ? Ink : Paper;
             foreach (var t in canvasRect.GetComponentsInChildren<Text>(true))
-                if (t != caption && t != menuText && t != sceneText && !t.transform.IsChildOf(placeRow)) t.color = text;
+                if (t != caption && t != sceneText && !t.transform.IsChildOf(placeRow)) t.color = text;
             placeCaption.color = Paper;
             sceneText.color = Paper;
             caption.color = Paper;
@@ -717,8 +699,6 @@ namespace Silence1
             Style(replayButton, replayText, false, text, text);
             Style(muteButton, muteText, false, text, text);
             Style(captionButton, captionText, false, text, text);
-            SetColors(menuButton, new Color(Ink.r, Ink.g, Ink.b, .55f));
-            menuText.color = Paper;
             Refresh();
         }
 
@@ -992,9 +972,8 @@ namespace Silence1
             Log("key M " + State());
             yield return Press(Key.M);
             Log("key M again " + State());
-            Log("key Esc -> " + openWindowScene);
-            VisitEntry.TestDir = dir;
-            yield return Press(Key.Escape);
+            Log("done");
+            Application.Quit();
         }
 
         public static IEnumerator Press(Key key)
@@ -1169,15 +1148,5 @@ namespace Silence1
         Vector2 RingScreen(float hour) =>
             RectTransformUtility.WorldToScreenPoint(null, dial.transform.TransformPoint(TimeDial.OnRing(hour, dial.radius)));
 
-        IEnumerator ReEntered(string dir)
-        {
-            yield return new WaitForSeconds(1.5f);
-            yield return new WaitForEndOfFrame();
-            string tag = Screen.width < Screen.height ? "portrait_" : "";
-            ScreenCapture.CaptureScreenshot(Path.Combine(dir, tag + "10_visit_reentered.png"));
-            File.AppendAllText(Path.Combine(dir, "visit_test.log"), $"re-entered visit from the demo button (click); first screen slot {slots[startSlot].label}, visited {visited}\n");
-            yield return new WaitForSeconds(1f);
-            Application.Quit();
-        }
     }
 }

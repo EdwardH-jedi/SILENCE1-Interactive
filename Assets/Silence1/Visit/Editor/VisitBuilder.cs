@@ -16,7 +16,6 @@ namespace Silence1.Editor
     {
         const string Root = "Assets/Silence1/Visit/";
         const string SceneFile = "Assets/Scenes/Silence1Visit.unity";
-        const string DemoScene = "Assets/Scenes/Silence1Demo.unity";
         const string PlayerPath = "Build/Visit/SILENCE1 Visit.exe";
 
         static VisitCue Cue(float from, float to, string text) => new() { from = from, to = to, text = text };
@@ -167,7 +166,7 @@ namespace Silence1.Editor
                 SceneManager.SetActiveScene(previous);
                 EditorSceneManager.CloseScene(scene, true);
             }
-            // Append only; the demo stays first and the web build keeps its own scene list.
+            // Append only; other scenes in the list are left alone.
             var list = EditorBuildSettings.scenes.ToList();
             if (!list.Any(s => s.path == SceneFile)) list.Add(new EditorBuildSettingsScene(SceneFile, true));
             EditorBuildSettings.scenes = list.ToArray();
@@ -199,8 +198,7 @@ namespace Silence1.Editor
                 PlayerSettings.runInBackground = true;
                 var report = BuildPipeline.BuildPlayer(new BuildPlayerOptions
                 {
-                    // The visit opens first; the open-window demo is one button away and comes back here.
-                    scenes = new[] { SceneFile, DemoScene },
+                    scenes = new[] { SceneFile },
                     locationPathName = playerPath,
                     target = BuildTarget.StandaloneWindows64,
                     options = BuildOptions.None,

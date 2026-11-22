@@ -20,3 +20,14 @@ crashlytics-build.properties
 .DS_Store
 Thumbs.db
 /Data/
+# Open-window demo: kept on this PC, not published (the repo ships the visit only)
+/Assets/Scenes/Silence1Demo.unity*
+/Assets/Silence1/Art*
+/Assets/Silence1/Audio*
+/Assets/Silence1/Editor*
+/Assets/Silence1/Materials*
+/Assets/Silence1/Scripts*
+/Assets/Silence1/Section*
+/Assets/Silence1/Visit/Scripts/VisitEntry.cs*
+/Assets/Plugins*
+/Assets/WebGLTemplates*

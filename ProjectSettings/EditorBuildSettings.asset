@@ -6,9 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Silence1Demo.unity
-    guid: e1cf5d722b57f1a4eb30a462244d2dfe
-  - enabled: 1
     path: Assets/Scenes/Silence1Visit.unity
     guid: c73f9c9eac654a04ba417c1e3f80fc3b
   m_configObjects:
