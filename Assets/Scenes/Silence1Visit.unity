@@ -1,0 +1,530 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!29 &1
+OcclusionCullingSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_OcclusionBakeSettings:
+    smallestOccluder: 5
+    smallestHole: 0.25
+    backfaceThreshold: 100
+  m_SceneGUID: 00000000000000000000000000000000
+  m_OcclusionCullingData: {fileID: 0}
+--- !u!104 &2
+RenderSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 10
+  m_Fog: 0
+  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  m_FogMode: 3
+  m_FogDensity: 0.01
+  m_LinearFogStart: 0
+  m_LinearFogEnd: 300
+  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
+  m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
+  m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
+  m_AmbientIntensity: 1
+  m_AmbientMode: 0
+  m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
+  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_HaloStrength: 0.5
+  m_FlareStrength: 1
+  m_FlareFadeSpeed: 3
+  m_HaloTexture: {fileID: 0}
+  m_SpotCookie: {fileID: 10001, guid: 0000000000000000e000000000000000, type: 0}
+  m_DefaultReflectionMode: 0
+  m_DefaultReflectionResolution: 128
+  m_ReflectionBounces: 1
+  m_ReflectionIntensity: 1
+  m_CustomReflection: {fileID: 0}
+  m_Sun: {fileID: 0}
+  m_UseRadianceAmbientProbe: 0
+--- !u!157 &3
+LightmapSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 13
+  m_BakeOnSceneLoad: 0
+  m_GISettings:
+    serializedVersion: 2
+    m_BounceScale: 1
+    m_IndirectOutputScale: 1
+    m_AlbedoBoost: 1
+    m_EnvironmentLightingMode: 0
+    m_EnableBakedLightmaps: 1
+    m_EnableRealtimeLightmaps: 0
+  m_LightmapEditorSettings:
+    serializedVersion: 12
+    m_Resolution: 2
+    m_BakeResolution: 40
+    m_AtlasSize: 1024
+    m_AO: 0
+    m_AOMaxDistance: 1
+    m_CompAOExponent: 1
+    m_CompAOExponentDirect: 0
+    m_ExtractAmbientOcclusion: 0
+    m_Padding: 2
+    m_LightmapParameters: {fileID: 0}
+    m_LightmapsBakeMode: 1
+    m_TextureCompression: 1
+    m_ReflectionCompression: 2
+    m_MixedBakeMode: 2
+    m_BakeBackend: 2
+    m_PVRSampling: 1
+    m_PVRDirectSampleCount: 32
+    m_PVRSampleCount: 512
+    m_PVRBounces: 2
+    m_PVREnvironmentSampleCount: 256
+    m_PVREnvironmentReferencePointCount: 2048
+    m_PVRFilteringMode: 1
+    m_PVRDenoiserTypeDirect: 2
+    m_PVRDenoiserTypeIndirect: 2
+    m_PVRDenoiserTypeAO: 2
+    m_PVRFilterTypeDirect: 0
+    m_PVRFilterTypeIndirect: 0
+    m_PVRFilterTypeAO: 0
+    m_PVREnvironmentMIS: 1
+    m_PVRCulling: 1
+    m_PVRFilteringGaussRadiusDirect: 1
+    m_PVRFilteringGaussRadiusIndirect: 1
+    m_PVRFilteringGaussRadiusAO: 1
+    m_PVRFilteringAtrousPositionSigmaDirect: 0.5
+    m_PVRFilteringAtrousPositionSigmaIndirect: 2
+    m_PVRFilteringAtrousPositionSigmaAO: 1
+    m_ExportTrainingData: 0
+    m_TrainingDataDestination: TrainingData
+    m_LightProbeSampleCountMultiplier: 4
+  m_LightingDataAsset: {fileID: 20201, guid: 0000000000000000f000000000000000, type: 0}
+  m_LightingSettings: {fileID: 0}
+--- !u!196 &4
+NavMeshSettings:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_BuildSettings:
+    serializedVersion: 3
+    agentTypeID: 0
+    agentRadius: 0.5
+    agentHeight: 2
+    agentSlope: 45
+    agentClimb: 0.4
+    ledgeDropHeight: 0
+    maxJumpAcrossDistance: 0
+    minRegionArea: 2
+    manualCellSize: 0
+    cellSize: 0.16666667
+    manualTileSize: 0
+    tileSize: 256
+    buildHeightMesh: 0
+    maxJobWorkers: 0
+    preserveTilesOutsideBounds: 0
+    debug:
+      m_Flags: 0
+  m_NavMeshData: {fileID: 0}
+--- !u!1 &678945423
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 678945426}
+  - component: {fileID: 678945425}
+  - component: {fileID: 678945424}
+  m_Layer: 0
+  m_Name: Camera
+  m_TagString: MainCamera
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!81 &678945424
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 678945423}
+  m_Enabled: 1
+--- !u!20 &678945425
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 678945423}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.078431375, g: 0.07058824, b: 0.078431375, a: 1}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_Iso: 200
+  m_ShutterSpeed: 0.005
+  m_Aperture: 16
+  m_FocusDistance: 10
+  m_FocalLength: 50
+  m_BladeCount: 5
+  m_Curvature: {x: 2, y: 11}
+  m_BarrelClipping: 0.25
+  m_Anamorphism: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 0
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+--- !u!4 &678945426
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 678945423}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1564818481
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1564818483}
+  - component: {fileID: 1564818482}
+  m_Layer: 0
+  m_Name: Night visit
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1564818482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1564818481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e274b343b1cab143999b441c7087839, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Silence1.NightVisit
+  slots:
+  - id: 0200
+    label: 02:00
+    title: "\uBC30\uB2EC \uC2A4\uCFE0\uD130"
+    place: 0
+    hour: 2
+    clip: {fileID: 32900000, guid: 7a6d055c6d595664cb0e02822d731877, type: 3}
+    still: {fileID: 2800000, guid: 08ea1d67efcdf4a4393a7ceda2c9dba6, type: 3}
+    exterior: {fileID: 8300000, guid: 9b988b25b842f734888dba45dcc95b9e, type: 3}
+    exteriorBed: {fileID: 8300000, guid: 4f8de4af49e71754685eee5f89614d87, type: 3}
+    interior: {fileID: 8300000, guid: ccb8c70bf7691e1478022f92826653d2, type: 3}
+    structure: {fileID: 0}
+    replayFrom: 3.5
+    eventEnd: 8
+    cues:
+    - from: 0
+      to: 1.2
+      text: "\uB0C9\uC7A5\uACE0\uAC00 \uB0AE\uAC8C \uB3C4\uB294 \uC18C\uB9AC"
+    - from: 1.2
+      to: 5
+      text: "\uACE8\uBAA9 \uC548\uCABD\uC5D0\uC11C \uB2E4\uAC00\uC624\uB294 \uC2A4\uCFE0\uD130 \uC5D4\uC9C4 \uC18C\uB9AC"
+    - from: 5
+      to: 7.4
+      text: "\uBC30\uB2EC \uC2A4\uCFE0\uD130\uAC00 \uCC3D \uC55E\uC744 \uC9C0\uB098\uAC00\uB294 \uC18C\uB9AC"
+    - from: 7.4
+      to: 9.6
+      text: "\uC2A4\uCFE0\uD130 \uC18C\uB9AC\uAC00 \uBA40\uC5B4\uC9C4\uB2E4"
+    - from: 9.6
+      to: 9999
+      text: "\uB0C9\uC7A5\uACE0\uAC00 \uB0AE\uAC8C \uB3C4\uB294 \uC18C\uB9AC"
+  - id: 0630
+    label: 06:30
+    title: "\uCCAB \uBC84\uC2A4"
+    place: 0
+    hour: 6.5
+    clip: {fileID: 32900000, guid: 4c6ba999ce39acb49ba9917fb6666e3c, type: 3}
+    still: {fileID: 2800000, guid: 9369e9be30c3aa14189742cd8f13bb52, type: 3}
+    exterior: {fileID: 8300000, guid: b32605927f778c147ab8d61fb5dc3e30, type: 3}
+    exteriorBed: {fileID: 8300000, guid: a34dd895567156e41bdf7ab8e7c736d0, type: 3}
+    interior: {fileID: 8300000, guid: 479eba830c0e26f42a4f396c10d75edf, type: 3}
+    structure: {fileID: 0}
+    replayFrom: 4.5
+    eventEnd: 9
+    cues:
+    - from: 0
+      to: 2.3
+      text: "\uC774\uB978 \uC544\uCE68 \uC0C8\uC18C\uB9AC"
+    - from: 2.3
+      to: 5.6
+      text: "\uCCAB \uBC84\uC2A4\uAC00 \uB2E4\uAC00\uC624\uB294 \uC5D4\uC9C4 \uC18C\uB9AC"
+    - from: 5.6
+      to: 7.6
+      text: "\uBC84\uC2A4\uAC00 \uBA48\uCD94\uB294 \uC18C\uB9AC \xB7 \uC5D0\uC5B4\uBE0C\uB808\uC774\uD06C"
+    - from: 7.6
+      to: 9
+      text: "\uBC84\uC2A4 \uBB38\uC774 \uC5F4\uB9AC\uB294 \uC18C\uB9AC"
+    - from: 9
+      to: 18
+      text: "\uBC84\uC2A4 \uACF5\uD68C\uC804 \uC18C\uB9AC"
+    - from: 18
+      to: 9999
+      text: "\uC2E4\uB0B4\uC758 \uB0AE\uC740 \uC18C\uC74C"
+  - id: 1400
+    label: 14:00
+    title: "\uCD08\uB4F1\uD559\uC0DD \uD558\uAD63\uAE38"
+    place: 0
+    hour: 14
+    clip: {fileID: 32900000, guid: e425409e3d54cd64db131ccf0ff17dfa, type: 3}
+    still: {fileID: 2800000, guid: 702ef578b09094c42a865874bae1b797, type: 3}
+    exterior: {fileID: 8300000, guid: abdb2d45b70c8c74babbd9f61ec19a12, type: 3}
+    exteriorBed: {fileID: 8300000, guid: 75ea56e20b77e804fa5e9a68e34f6812, type: 3}
+    interior: {fileID: 8300000, guid: cf4f0193712125e449e929d1bebf82c9, type: 3}
+    structure: {fileID: 0}
+    replayFrom: 5
+    eventEnd: 10.5
+    cues:
+    - from: 0
+      to: 2
+      text: "\uBA3C \uB3C4\uB85C \uC18C\uB9AC\uC640 \uC0C8\uC18C\uB9AC"
+    - from: 2
+      to: 6
+      text: "\uAC00\uBC29 \uBA58 \uC544\uC774 \uB458\uC774 \uAC78\uC5B4\uC624\uB294 \uC18C\uB9AC"
+    - from: 6
+      to: 7
+      text: "\u201C\uAC19\uC774 \uAC00!\u201D \u2014 \uC55E\uC120 \uC544\uC774\uAC00 \uB4A4\uB97C \uBCF4\uACE0 \uBD80\uB978\uB2E4"
+    - from: 7
+      to: 10.5
+      text: "\uB4A4\uB530\uB77C \uB6F0\uB294 \uC6B4\uB3D9\uD654 \uBC1C\uC18C\uB9AC"
+    - from: 10.5
+      to: 9999
+      text: "\uB0C9\uC7A5\uACE0\uAC00 \uB0AE\uAC8C \uB3C4\uB294 \uC18C\uB9AC"
+  - id: 1640
+    label: 16:40
+    title: "\uC911\uD559\uC0DD \uD558\uAD63\uAE38"
+    place: 0
+    hour: 16.666666
+    clip: {fileID: 32900000, guid: c17cffe9a5d8ec645b76c5d868dc1cd9, type: 3}
+    still: {fileID: 2800000, guid: edb2e18d977ea7a4386db80d51942f7b, type: 3}
+    exterior: {fileID: 8300000, guid: 36d33fb0051d0324dbe5101504f48e20, type: 3}
+    exteriorBed: {fileID: 8300000, guid: d22c97998f98f92478009d59c541f303, type: 3}
+    interior: {fileID: 8300000, guid: deb289396aecded469136d499e053b40, type: 3}
+    structure: {fileID: 0}
+    replayFrom: 3.5
+    eventEnd: 9
+    cues:
+    - from: 0
+      to: 2
+      text: "\uB2A6\uC740 \uC624\uD6C4 \uAC70\uB9AC\uC758 \uB0AE\uC740 \uC18C\uC74C"
+    - from: 2
+      to: 4.2
+      text: "\uAD50\uBCF5 \uC785\uC740 \uD559\uC0DD \uC14B\uC774 \uAC78\uC5B4\uC624\uB294 \uC18C\uB9AC"
+    - from: 4.2
+      to: 7
+      text: "\uB458\uC774 \uC8FC\uACE0\uBC1B\uB294 \uB300\uD654 \u2014 \u201C\uC9D1\uC5D0 \uAC00?\u201D \u201C\uC751, \uAC00\uC790.\u201D"
+    - from: 7
+      to: 7.9
+      text: "\uD568\uAED8 \uC6C3\uB294 \uC18C\uB9AC"
+    - from: 7.9
+      to: 10
+      text: "\uBAA8\uD241\uC774\uB97C \uB3CC\uBA70 \uC7A6\uC544\uB4DC\uB294 \uB9D0\uC18C\uB9AC\uC640 \uBC1C\uC18C\uB9AC"
+    - from: 10
+      to: 9999
+      text: "\uB2A6\uC740 \uC624\uD6C4 \uAC70\uB9AC\uC758 \uB0AE\uC740 \uC18C\uC74C"
+  - id: 1900
+    label: 19:00
+    title: "\uC9C1\uC7A5\uC778 \uADC0\uAC13\uAE38"
+    place: 0
+    hour: 19
+    clip: {fileID: 32900000, guid: f34f5729ab89bc0499bfb02e85ea02a8, type: 3}
+    still: {fileID: 2800000, guid: 41af34926a112794f954d9e84a03410f, type: 3}
+    exterior: {fileID: 8300000, guid: d987708ac2b703640ad6b7889471db80, type: 3}
+    exteriorBed: {fileID: 8300000, guid: dcfd81ea0788a2646bcbfa44a239d3d0, type: 3}
+    interior: {fileID: 8300000, guid: 652e3e60dd066f14cb99554b8f0052c9, type: 3}
+    structure: {fileID: 0}
+    replayFrom: 2.3
+    eventEnd: 15
+    cues:
+    - from: 0
+      to: 2.8
+      text: "\uC815\uB958\uC7A5\uC5D0 \uC120 \uBC84\uC2A4\uC758 \uACF5\uD68C\uC804 \uC18C\uB9AC"
+    - from: 2.8
+      to: 4.5
+      text: "\uBC84\uC2A4 \uBB38\uC774 \uC5F4\uB9AC\uB294 \uC18C\uB9AC \xB7 \uB0B4\uB9AC\uB294 \uC0AC\uB78C\uC758 \uBC1C\uAC78\uC74C"
+    - from: 4.5
+      to: 6.6
+      text: "\uC778\uB3C4\uB85C \uD769\uC5B4\uC9C0\uB294 \uBC1C\uAC78\uC74C"
+    - from: 6.6
+      to: 7.3
+      text: "\uBC84\uC2A4 \uBB38\uC774 \uB2EB\uD788\uB294 \uC18C\uB9AC"
+    - from: 7.3
+      to: 13.3
+      text: "\uBC84\uC2A4\uAC00 \uCD9C\uBC1C\uD574 \uBA40\uC5B4\uC9C0\uB294 \uC18C\uB9AC"
+    - from: 13.3
+      to: 9999
+      text: "\uBC84\uC2A4\uAC00 \uB5A0\uB09C \uB4A4 \uB0A8\uC740 \uBC1C\uC18C\uB9AC"
+  - id: 2300
+    label: 23:00
+    title: "\uAC00\uAC8C \uBB38 \uB2EB\uB294 \uC2DC\uAC04"
+    place: 0
+    hour: 23
+    clip: {fileID: 32900000, guid: 4abeb932ad53d9e4faa0007d2de9a8a1, type: 3}
+    still: {fileID: 2800000, guid: 90e6c4bc6ef9a9d44bb87a701ede7bad, type: 3}
+    exterior: {fileID: 8300000, guid: 36ce883b937d0b044a8420bd0fe827b9, type: 3}
+    exteriorBed: {fileID: 8300000, guid: 69d72310ae0086643aac97c9cabb30f6, type: 3}
+    interior: {fileID: 8300000, guid: 620c094768e699a46a7a824b21b8ab05, type: 3}
+    structure: {fileID: 8300000, guid: 5c76840339b510541aa38c51532793b6, type: 3}
+    replayFrom: 3.8
+    eventEnd: 8
+    cues:
+    - from: 0
+      to: 1
+      text: "\uBC24\uAC70\uB9AC\uC758 \uB0AE\uC740 \uC18C\uC74C"
+    - from: 1
+      to: 5.1
+      text: "\uAE38 \uAC74\uB108 \uAC00\uAC8C \uC55E, \uB450 \uC0AC\uB78C\uC758 \uB9D0\uC18C\uB9AC\uC640 \uC6C3\uC74C"
+    - from: 5.1
+      to: 6
+      text: "\uC704\uCE35\uC5D0\uC11C \uBB3C\uAC74 \uB5A8\uC5B4\uC9C0\uB294 \uC18C\uB9AC"
+    - from: 6
+      to: 8
+      text: "\uAE38 \uAC74\uB108 \uC6C3\uC74C\uC18C\uB9AC"
+    - from: 8
+      to: 10.5
+      text: "\uB450 \uC0AC\uB78C\uC774 \uAC78\uC5B4\uAC00\uBA70 \uBA40\uC5B4\uC9C0\uB294 \uC18C\uB9AC"
+    - from: 10.5
+      to: 9999
+      text: "\uC2E4\uB0B4\uC758 \uB0AE\uC740 \uC18C\uC74C"
+  - id: hwy
+    label: "\uACE0\uAC00\uB3C4\uB85C"
+    title: "\uACE0\uAC00\uB3C4\uB85C \uC55E"
+    place: 1
+    hour: 0
+    clip: {fileID: 32900000, guid: 1d7e531471f0f1249b5724574ee63059, type: 3}
+    still: {fileID: 2800000, guid: f79ec3cc39822c040b8b08f29be06153, type: 3}
+    exterior: {fileID: 8300000, guid: 42533848755088441b39546ecb938990, type: 3}
+    exteriorBed: {fileID: 8300000, guid: e7e4d875adc834343ad1461bc6191576, type: 3}
+    interior: {fileID: 8300000, guid: ec32edd9f2f2c3e4e956e313aa1d1017, type: 3}
+    structure: {fileID: 0}
+    replayFrom: 2.5
+    eventEnd: 6
+    cues:
+    - from: 0
+      to: 2.9
+      text: "\uACE0\uAC00\uB3C4\uB85C\uB97C \uB2EC\uB9AC\uB294 \uCC28\uB4E4\uC758 \uB04A\uC774\uC9C0 \uC54A\uB294 \uD0C0\uC774\uC5B4 \uC18C\uB9AC"
+    - from: 2.9
+      to: 5.1
+      text: "\uD654\uBB3C\uCC28\uC758 \uB0AE\uC740 \uC5D4\uC9C4\uC74C\uC774 \uC9C0\uB098\uAC04\uB2E4"
+    - from: 5.1
+      to: 9999
+      text: "\uACE0\uAC00\uB3C4\uB85C\uB97C \uB2EC\uB9AC\uB294 \uCC28\uB4E4\uC758 \uB04A\uC774\uC9C0 \uC54A\uB294 \uD0C0\uC774\uC5B4 \uC18C\uB9AC"
+  - id: rail
+    label: "\uCCA0\uB3C4"
+    title: "\uCCA0\uB3C4 \uC8FC\uBCC0"
+    place: 1
+    hour: 0
+    clip: {fileID: 32900000, guid: a031171c4d8fa9b4a8a606e98cd4b614, type: 3}
+    still: {fileID: 2800000, guid: af9d63b5c3a23784db341e9d7b2a1157, type: 3}
+    exterior: {fileID: 8300000, guid: 7fb7c1da0dd393745b412f8f430d246d, type: 3}
+    exteriorBed: {fileID: 8300000, guid: 8d19d296814e22b4699dd4f28d719d57, type: 3}
+    interior: {fileID: 8300000, guid: 5268b7e71de1eac448a03f939e48b1a2, type: 3}
+    structure: {fileID: 0}
+    replayFrom: 2.5
+    eventEnd: 9.6
+    cues:
+    - from: 0
+      to: 1
+      text: "\uC591\uBC29\uD5A5\uC73C\uB85C \uB2EC\uB9AC\uB294 \uCC28 \uC18C\uB9AC"
+    - from: 1
+      to: 3
+      text: "\uC804\uB3D9\uCC28\uAC00 \uB2E4\uAC00\uC624\uB294 \uC18C\uB9AC"
+    - from: 3
+      to: 8.5
+      text: "\uC804\uB3D9\uCC28\uAC00 \uC9C0\uB098\uAC00\uB294 \uC18C\uB9AC \xB7 \uCCA0\uAE38 \uBC14\uD034 \uC18C\uB9AC"
+    - from: 8.5
+      to: 9.6
+      text: "\uB9C8\uC9C0\uB9C9 \uCE78\uC774 \uBE60\uC838\uB098\uAC04\uB2E4"
+    - from: 9.6
+      to: 9999
+      text: "\uB2E4\uC2DC \uB4E4\uB9AC\uB294 \uB3C4\uB85C\uC758 \uCC28 \uC18C\uB9AC"
+  - id: air
+    label: "\uD65C\uC8FC\uB85C"
+    title: "\uD65C\uC8FC\uB85C \uC8FC\uBCC0"
+    place: 1
+    hour: 0
+    clip: {fileID: 32900000, guid: dabf2d770af7f0b4aac368453cefb8a7, type: 3}
+    still: {fileID: 2800000, guid: fbc555e5b2041e94bb8ea12839aab7cc, type: 3}
+    exterior: {fileID: 8300000, guid: 1b01f11877f4f3848a720695fbf81b83, type: 3}
+    exteriorBed: {fileID: 8300000, guid: 376446ed174637643addd3cdedf2030d, type: 3}
+    interior: {fileID: 8300000, guid: 4660a78ad079f8147ba46d1304f8eebc, type: 3}
+    structure: {fileID: 0}
+    replayFrom: 5
+    eventEnd: 10
+    cues:
+    - from: 0
+      to: 4
+      text: "\uAC04\uC120\uB3C4\uB85C\uC758 \uCC28 \uC18C\uB9AC \xB7 \uBA40\uB9AC\uC11C \uCEE4\uC9C0\uB294 \uC81C\uD2B8\uC5D4\uC9C4 \uC18C\uB9AC"
+    - from: 4
+      to: 8.5
+      text: "\uC5EC\uAC1D\uAE30\uAC00 \uD65C\uC8FC\uB85C\uC5D0\uC11C \uC18D\uB3C4\uB97C \uC62C\uB9B0\uB2E4"
+    - from: 8.5
+      to: 9999
+      text: "\uC5EC\uAC1D\uAE30\uAC00 \uAE30\uC218\uB97C \uB4E0\uB2E4 \u2014 \uC774\uB959 \uC9C1\uC804"
+  regular: {fileID: 12800000, guid: fcc525e64c41e02469ae83a29e1367f4, type: 3}
+  bold: {fileID: 12800000, guid: 533f0d4f4ab5c5d4cb7741b5ac2f1fd1, type: 3}
+  startSlot: 2
+  firstVisitSlot: 0
+  openWindowScene: Silence1Demo
+--- !u!4 &1564818483
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1564818481}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1660057539 &9223372036854775807
+SceneRoots:
+  m_ObjectHideFlags: 0
+  m_Roots:
+  - {fileID: 678945426}
+  - {fileID: 1564818483}

@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SILENCE1 창호 체험</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#f6f4ee;color:#242222;font:14px system-ui,sans-serif}
+canvas{display:block;width:100%;height:100%;touch-action:none;cursor:grab;outline-offset:-3px}
+canvas.dragging{cursor:grabbing}#loading{position:absolute;inset:0;display:grid;align-content:center;justify-content:center;text-align:center;background:#f6f4ee;gap:.9em}
+#loading[hidden]{display:none}progress{width:12em;height:3px;accent-color:#df4a2b}
+#direction{position:absolute;pointer-events:none;transform:translate(8px,-50%);background:#fcfbf7e8;color:#97351e;border:1px solid #c6ada1;border-radius:100%;width:27px;height:27px;text-align:center;font:20px/23px system-ui}
+#view{position:absolute;top:clamp(10px,2.2vw,24px);left:clamp(10px,2.2vw,24px);border:1px solid #514d43;background:#fcfbf7ed;color:#292822;font:600 13px system-ui;padding:0 15px;min-height:42px;cursor:pointer}
+#view:focus-visible{outline:3px solid #c34728;outline-offset:3px}#view.suggest{border-color:#b8492a;left:clamp(10px,var(--joint-x),calc(100% - 146px));top:clamp(10px,var(--joint-y),calc(100% - 52px))}
+#legend{position:absolute;bottom:clamp(10px,2.2vw,24px);left:clamp(10px,2.2vw,24px);display:flex;align-items:center;gap:.55em;font:12px system-ui;color:#3c3931;background:#fcfbf7ed;padding:7px 10px;pointer-events:none}
+#legend i{width:10px;height:3px;background:#d65333}#legend[hidden]{display:none}
+</style>
+</head>
+<body>
+<canvas id="scene" tabindex="0" role="slider" aria-label="창 닫힘 정도. 앞 창짝을 오른쪽으로 밀거나 방향키를 사용하세요." aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"></canvas>
+<div id="loading" role="status"><span>창호 체험을 여는 중</span><progress max="1" value="0"></progress></div>
+<button id="view" type="button" hidden>접합부 단면 보기 ↗</button>
+<span id="legend" hidden><i aria-hidden="true"></i>기밀재 <span id="contact"></span></span>
+<span id="direction" aria-hidden="true" hidden>→</span>
+<script>
+const canvas = document.getElementById('scene');
+const loading = document.getElementById('loading');
+let player, pointer = null, sceneStarted = false;
+const viewButton = document.getElementById('view');
+let sectionView = false, seenSection = false;
+function switchView() {
+  if (!player || !sceneStarted || pointer !== null) return;
+  const mode = (sectionView ? 'room' : 'section') + (matchMedia('(prefers-reduced-motion: reduce)').matches ? '-instant' : '');
+  player.SendMessage('Window','SetView',mode);
+  canvas.focus({preventScroll:true});
+}
+viewButton.onclick = switchView;
+function showScene() {
+  if (!player || !sceneStarted || loading.hidden) return;
+  requestAnimationFrame(() => {
+    loading.hidden=true;
+    viewButton.hidden=false;
+    publish('ready');
+    canvas.focus({preventScroll:true});
+  });
+}
+function publish(type, detail) {
+  if (parent !== window) parent.postMessage({source:'silence1-window',type,detail},location.origin);
+}
+window.addEventListener('sashchange', e => {
+  sceneStarted = true;
+  showScene();
+  const hint = document.getElementById('direction');
+  hint.style.left = (100*e.detail.handleX)+'%';
+  hint.style.top = (100*e.detail.handleY)+'%';
+  sectionView = e.detail.sectionView;
+  if (sectionView) seenSection = true;
+  const atSeat = !seenSection && e.detail.firstSeat && e.detail.closure === 1;
+  viewButton.textContent = sectionView ? '← 실내로' : atSeat ? '맞물린 단면 보기 ↗' : '접합부 단면 보기 ↗';
+  viewButton.style.setProperty('--joint-x','calc('+hint.style.left+' + 23px)');
+  viewButton.style.setProperty('--joint-y','calc('+hint.style.top+' - 21px)');
+  viewButton.classList.toggle('suggest',atSeat);
+  document.getElementById('legend').hidden = !sectionView;
+  document.getElementById('contact').textContent = e.detail.closure === 1 ? '· 맞닿음' : '· 열림';
+  hint.hidden = e.detail.sound || sectionView;
+  const amount = e.detail.closure;
+  const percent = amount === 0 || amount === 1 ? amount * 100 : Math.max(1,Math.min(99,Math.round(amount*100)));
+  canvas.setAttribute('aria-valuenow',percent);
+  e.detail.percent = percent;
+  publish('change',e.detail);
+});
+function point(kind,e) {
+  const r = canvas.getBoundingClientRect();
+  player.SendMessage('Window','BrowserPointer',[kind,(e.clientX-r.left)/r.width,1-(e.clientY-r.top)/r.height].join(','));
+}
+canvas.addEventListener('pointerdown',e=>{
+  if (!player || !sceneStarted || pointer !== null || e.button !== 0) return;
+  pointer=e.pointerId;
+  canvas.setPointerCapture(pointer);
+  canvas.focus({preventScroll:true});
+  canvas.classList.add('dragging');
+  point('down',e);
+});
+canvas.addEventListener('pointermove',e=>{ if(pointer===e.pointerId) point('move',e); });
+function release(e) {
+  if (pointer === null || (e.pointerId !== undefined && pointer !== e.pointerId)) return;
+  if(e.type === 'pointerup') point('move',e);
+  pointer=null;
+  canvas.classList.remove('dragging');
+  player.SendMessage('Window','BrowserPointer','end');
+}
+for (const type of ['pointerup','pointercancel','lostpointercapture']) canvas.addEventListener(type,release);
+window.addEventListener('blur',release);
+window.addEventListener('keydown',e=>{
+  if(e.key==='Escape') {e.preventDefault();publish('close');}
+  if(e.code==='KeyV' && !e.repeat) {e.preventDefault();switchView();}
+  if(player && sceneStarted && ['ArrowLeft','ArrowRight'].includes(e.key)){
+    e.preventDefault();player.SendMessage('Window','Nudge',e.key==='ArrowRight'?'right':'left');
+  }
+},true);
+function fail() {
+  loading.hidden=false;
+  loading.textContent='체험을 열 수 없습니다. WebGL 2를 지원하는 브라우저에서 다시 열어 주세요.';
+  publish('error');
+}
+</script>
+<script src="Build/{{{ LOADER_FILENAME }}}" onerror="fail()"></script>
+<script>
+if (typeof createUnityInstance === 'function') createUnityInstance(canvas,{
+  dataUrl:'Build/{{{ DATA_FILENAME }}}', frameworkUrl:'Build/{{{ FRAMEWORK_FILENAME }}}',codeUrl:'Build/{{{ CODE_FILENAME }}}',
+  streamingAssetsUrl:'StreamingAssets',companyName:'SILENCE1',productName:'SILENCE1',productVersion:'1.0',
+  devicePixelRatio:Math.min(window.devicePixelRatio||1,2)
+},p=>{loading.querySelector('progress').value=p}).then(instance=>{
+  player=instance;showScene();
+}).catch(fail);
+</script>
+</body>
+</html>
